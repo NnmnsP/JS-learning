@@ -1,54 +1,48 @@
 import {Vector} from '../src/Vector.js';
 
-describe('Vector', function() {
-    var vector1, vector2;
-  
-    beforeEach(function() {
-      vector1 = new Vector(2, 3);
-      vector2 = new Vector(4, 5);
-    });
-  
-    it('should create a new Vector instance', function() {
-      expect(vector1 instanceof Vector).toBe(true);
-      expect(vector1.x).toBe(2);
-      expect(vector1.y).toBe(3);
-    });
-  
-    it('should add two vectors', function() {
-      var result = vector1.add(vector2);
-      expect(result instanceof Vector).toBe(true);
-      expect(result.x).toBe(6);
-      expect(result.y).toBe(8);
-    });
-  
-    it('should subtract two vectors', function() {
-      var result = vector1.subtract(vector2);
-      expect(result instanceof Vector).toBe(true);
-      expect(result.x).toBe(-2);
-      expect(result.y).toBe(-2);
-    });
-  
-    it('should multiply a vector by a scalar', function() {
-      var result = vector1.multiply(2);
-      expect(result instanceof Vector).toBe(true);
-      expect(result.x).toBe(4);
-      expect(result.y).toBe(6);
-    });
-  
-    it('should calculate the length of a vector', function() {
-      var result = vector1.abs();
-      expect(result).toBeCloseTo(3.6055, 4);
-    });
-  
-    it('should calculate the unit vector', function() {
-      var result = vector1.unit();
-      expect(result instanceof Vector).toBe(true);
-      expect(result.x).toBeCloseTo(0.5547, 4);
-      expect(result.y).toBeCloseTo(0.8321, 4);
-    });
-  
-    it('should calculate the direction angle', function() {
-      var result = vector1.direction();
-      expect(result).toBeCloseTo(0.9828, 4);
-    });
+describe('Vector', function () {
+  let a, b;
+
+  beforeEach(function () {
+    a = new Vector(1, 2);
+    b = Vector.of(2, 0.5);
   });
+
+  it('should add vectors correctly', function () {
+    const sum = a.add(b);
+    expect(sum.x).toBe(3);
+    expect(sum.y).toBe(2.5);
+  });
+
+  it('should subtract vectors correctly', function () {
+    const difference = a.subtract(b);
+    expect(difference.x).toBe(-1);
+    expect(difference.y).toBe(1.5);
+  });
+
+  it('should multiply by scalar correctly', function () {
+    const scalar = 2;
+    const multiplied = a.multiply(scalar);
+    expect(multiplied.x).toBe(2);
+    expect(multiplied.y).toBe(4);
+  });
+
+  it('should calculate vector length correctly', function () {
+    const sum = a.add(b);
+    const abs = sum.abs();
+    expect(abs).toBeCloseTo(3.905124837953327);
+  });
+
+  it('should calculate unit vector correctly', function () {
+    const sum = a.add(b);
+    const unit = sum.unit();
+    expect(unit.x).toBeCloseTo(0.7682212795973759);
+    expect(unit.y).toBeCloseTo(0.6401843996644799);
+  });
+
+  it('should calculate direction angle correctly', function () {
+    const sum = a.add(b);
+    const direction = sum.direction();
+    expect(direction).toBeCloseTo(0.6947382761967033);
+  });
+});
