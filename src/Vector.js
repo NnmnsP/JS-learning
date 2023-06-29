@@ -1,4 +1,4 @@
-class Vector {
+export class Vector {
   /**
    * Creates a new Vector instance.
    * @param {number} x - The x-coordinate of the vector.
